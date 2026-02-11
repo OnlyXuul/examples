@@ -6,7 +6,6 @@ package dir_info
 
 import "core:fmt"
 import "core:os"
-import "core:path/filepath"
 
 main :: proc() {
 	cwd, wd_err := os.get_working_directory(context.allocator)
