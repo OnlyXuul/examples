@@ -48,7 +48,7 @@ main :: proc() {
 	fmt.println("JSON:")
 	fmt.printfln("%s", json_data)
 	fmt.printfln("Writing: %s", path)
-	werr := os.write_entire_file_or_err(path, json_data)
+	werr := os.write_entire_file(path, json_data)
 
 	if werr != nil {
 		fmt.eprintfln("Unable to write file: %v", werr)

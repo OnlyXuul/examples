@@ -11,7 +11,7 @@ get_password :: proc(allocator := context.allocator) -> string {
 	fmt.print("Enter password: ")
 
 	buf := make([dynamic]byte, allocator)
-	in_stream := os.stream_from_handle(os.stdin)
+	in_stream := os.to_stream(os.stdin)
 
 	for {
 		// Read a single character at a time.

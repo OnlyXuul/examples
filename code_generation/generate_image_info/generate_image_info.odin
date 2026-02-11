@@ -27,13 +27,13 @@ INPUT_DIR :: "images"
 OUTPUT_FILE :: "images.odin"
 
 main :: proc() {
-	d, d_err := os.open(INPUT_DIR, os.O_RDONLY)
+	d, d_err := os.open(INPUT_DIR)
 	assert(d_err == nil, "Failed opening '" + INPUT_DIR + "' folder")
 	defer os.close(d)
 
-	input_files, _ := os.read_dir(d, -1)
+	input_files, _ := os.read_dir(d, -1, context.allocator)
 
-	f, _ := os.open(OUTPUT_FILE, os.O_WRONLY | os.O_CREATE | os.O_TRUNC, 0o644)
+	f, _ := os.open(OUTPUT_FILE, {.Write, .Create, .Trunc}, {.Write_User, .Read_Other, .Read_Group})
 	defer os.close(f)
 
 	images: [dynamic]os.File_Info
