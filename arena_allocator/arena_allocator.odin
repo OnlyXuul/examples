@@ -21,14 +21,14 @@ load_files :: proc() -> ([]string, vmem.Arena) {
 	// See arena_init_buffer for an arena that does not use virtual memory,
 	// instead it relies on you feeding it a buffer.
 
-	f1, f1_ok := os.read_entire_file("file1.txt", arena_alloc)
-	ensure(f1_ok)
+	f1, f1_err := os.read_entire_file("file1.txt", arena_alloc)
+	ensure(f1_err == nil)
 
-	f2, f2_ok := os.read_entire_file("file2.txt", arena_alloc)
-	ensure(f2_ok)
+	f2, f2_err := os.read_entire_file("file2.txt", arena_alloc)
+	ensure(f2_err == nil)
 
-	f3, f3_ok := os.read_entire_file("file3.txt", arena_alloc)
-	ensure(f3_ok)
+	f3, f3_err := os.read_entire_file("file3.txt", arena_alloc)
+	ensure(f3_err == nil)
 
 	res := make([]string, 3, arena_alloc)
 	res[0] = string(f1)

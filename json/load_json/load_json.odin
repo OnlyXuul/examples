@@ -7,9 +7,9 @@ import "core:os"
 
 main :: proc() {
 	// Load in your json file!
-	data, ok := os.read_entire_file_from_filename("game_settings.json")
-	if !ok {
-		fmt.eprintln("Failed to load the file!")
+	data, read_err := os.read_entire_file("game_settings.json", context.allocator)
+	if read_err != nil {
+		fmt.eprintfln("Failed to load the file: %v", read_err)
 		return
 	}
 	defer delete(data) // Free the memory at the end
